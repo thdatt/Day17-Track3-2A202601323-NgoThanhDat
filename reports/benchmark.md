@@ -5,22 +5,22 @@
 - Cases: **11**
 - Passed: **11/11**
 - Evidence hit rate: **100.0%**
-- Average retrieval latency: **814.6 ms**
+- Average retrieval latency: **843.5 ms**
 - Average token reduction vs full source context: **14.2%**
 
 | Case | Layer | Pass | Latency ms | Retrieved tokens | Token reduction | Missing / Error |
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | E01 | short_term | PASS | 0.1 | 133 | 0.0% |  |
-| E06 | semantic | PASS | 463.4 | 148 | 67.8% |  |
-| E09 | long_term | PASS | 1566.2 | 969 | 0.0% |  |
-| E10 | short_term | PASS | 0.3 | 195 | 0.0% |  |
-| E02 | long_term | PASS | 1424.4 | 2336 | 0.0% |  |
-| E03 | long_term | PASS | 1396.5 | 2236 | 0.0% |  |
-| E04 | episodic | PASS | 269.3 | 483 | 0.0% |  |
-| E05 | episodic | PASS | 281.7 | 350 | 0.0% |  |
-| E07 | mixed | PASS | 1702.2 | 485 | 14.2% |  |
-| E11 | semantic | PASS | 253.2 | 146 | 74.2% |  |
-| E08 | long_term | PASS | 1603.4 | 2164 | 0.0% |  |
+| E06 | semantic | PASS | 635.1 | 148 | 67.8% |  |
+| E09 | long_term | PASS | 1454.6 | 969 | 0.0% |  |
+| E10 | short_term | PASS | 1.0 | 195 | 0.0% |  |
+| E02 | long_term | PASS | 1592.9 | 2226 | 0.0% |  |
+| E03 | long_term | PASS | 1407.4 | 2297 | 0.0% |  |
+| E04 | episodic | PASS | 286.0 | 483 | 0.0% |  |
+| E05 | episodic | PASS | 376.4 | 350 | 0.0% |  |
+| E07 | mixed | PASS | 1859.2 | 485 | 14.2% |  |
+| E11 | semantic | PASS | 263.1 | 146 | 74.2% |  |
+| E08 | long_term | PASS | 1402.8 | 2149 | 0.0% |  |
 
 ## Evidence excerpts
 
@@ -50,11 +50,11 @@
 
 ### E04 - episodic
 
-`EPISODE: Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail. metadata= EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20. metadata= EPISODE: Minh dang setup lai moi truong dev cho mot buoi ngoi code mot minh cuoi tuan nay, kieu khong co ai chung nhom, chi lam project rieng cua minh cho vui thoi. Truoc khi minh chon template va cai dependency, ban nhac lai gium minh mot chut: khi minh lam bai tap hay lam viec mot minh nhu vay thi minh thuong uu tien ngon ngu lap trinh nao nhi, va cai du an ca nhan ma minh hay dem ra lam demo do ten hay ma dinh dan`
+`EPISODE: Minh dang chuan bi tu on lai phan async cua Python vi tuan sau co bai kiem tra nho, ma minh thi hoc kieu de vao dau lai de troi ra lam neu chi doc chu suong. Neu lat nua ban phai giai thich cho minh nhung khai niem hoi truu tuong nhu coroutine roi Task hoat dong ra sao, chay tuan tu hay song song the nao, thi ban nen trinh bay theo hinh thuc nao de hop voi cach minh tiep thu nhat? Minh khong hoi ve chuyen chon stack hay thu vien gi dau, minh chi hoi ve cach minh thich duoc day va minh hoa thoi. metadata= EPISODE: Toi nay minh muon viet cho tron ven cai retry payment ma vua dung so thich stack ca nhan cua minh, vua theo dung policy thanh toan chinh thuc, vua tranh dam lai dung cai su`
 
 ### E05 - episodic
 
-`EPISODE: Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail. metadata= EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20. metadata= EPISODE: Voi demo ca nhan cua Minh, ngon ngu uu tien la gi? metadata= EPISODE: Sang mai minh phai hop review tien do voi mentor nen toi nay minh muon don dep lai het may thu con dang do. Minh biet minh con vai viec chua chot xong nhung dau oc dang roi qua khong nho het. Ban lam on liet ke lai gium minh: hien tai minh con viec gi chua dong lai, cai deadline cua no la khi nao, va cai ma dinh danh open-loop ma minh da g`
+`EPISODE: Toi nay minh muon viet cho tron ven cai retry payment ma vua dung so thich stack ca nhan cua minh, vua theo dung policy thanh toan chinh thuc, vua tranh dam lai dung cai su co async ma lan truoc minh da tung dinh. Ban giup minh gom ca ba manh lai mot cho: mot la ngon ngu ma minh thich dung khi lam viec ca nhan, hai la marker policy payment trong lab de danh dau request khoi trung don, va ba la cai fix ma lan truoc minh da lam va no that su work de minh khong lap lai loi cu. Rap tat ca vao mot huong dan mach lac cho minh, va nho scope dung theo rieng minh thoi. metadata= EPISODE: Voi demo ca nhan cua Minh, ngon ngu uu tien la gi? metadata= EPISODE: Hom nay toi debug async HTTP. Toi d`
 
 ### E07 - mixed
 

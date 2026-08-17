@@ -1,0 +1,17 @@
+ Container vinuni-lab17-zep-memory-redis-1 Running 
+ Container vinuni-lab17-zep-memory-qdrant-1 Running 
+ Container vinuni-lab17-zep-memory-redis-1 Waiting 
+ Container vinuni-lab17-zep-memory-redis-1 Healthy 
+ Container vinuni-lab17-zep-memory-app-run-c1a4c02f5d2b Creating 
+ Container vinuni-lab17-zep-memory-app-run-c1a4c02f5d2b Created 
+=== PROOF: minh-lab17 memory khong con retrieve duoc ===
+  long_term  raised ApiError: headers: {'date': 'Mon, 17 Aug 2026 05:51:10 GMT', 'content-type': 'application/json; char
+  episodic   raised ApiError: headers: {'date': 'Mon, 17 Aug 2026 05:51:10 GMT', 'content-type': 'application/json; char
+
+=== CONTROL 1: lan-lab17 KHONG bi anh huong ===
+  Lan long_term chars=3921 | LOTUS-88=True Java=True Spring Boot=True
+
+=== CONTROL 2: shared semantic KB van nguyen ven ===
+  semantic chars=592 | PAYMENT-RULE-3=True Idempotency-Key=True
+
+=> Xoa dung pham vi: chi user-scoped memory cua Minh, khong dung den Lan va domain KB.

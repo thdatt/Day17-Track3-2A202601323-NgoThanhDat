@@ -5,32 +5,32 @@
 - Cases: **20**
 - Passed: **20/20**
 - Evidence hit rate: **100.0%**
-- Average retrieval latency: **919.7 ms**
+- Average retrieval latency: **1075.8 ms**
 - Average token reduction vs full source context: **8.7%**
 - Golden bonus: **10/10** (100% required)
 
 | Case | Layer | Pass | Latency ms | Retrieved tokens | Token reduction | Missing / Error |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| G01 | short_term | PASS | 0.2 | 227 | 0.0% |  |
-| G02 | short_term | PASS | 0.0 | 133 | 0.0% |  |
-| G08 | long_term | PASS | 1440.9 | 700 | 0.0% |  |
-| G09 | long_term | PASS | 1303.6 | 1135 | 0.0% |  |
-| G12 | semantic | PASS | 245.9 | 365 | 20.5% |  |
-| G14 | semantic | PASS | 270.9 | 217 | 43.9% |  |
-| G15 | semantic | PASS | 302.7 | 217 | 52.7% |  |
-| G19 | mixed | PASS | 1634.7 | 581 | 0.0% |  |
-| G03 | long_term | PASS | 1275.1 | 1154 | 0.0% |  |
-| G04 | long_term | PASS | 1341.7 | 1413 | 0.0% |  |
-| G05 | long_term | PASS | 1346.2 | 1414 | 0.0% |  |
-| G10 | episodic | PASS | 261.7 | 445 | 0.0% |  |
-| G11 | episodic | PASS | 251.2 | 454 | 0.0% |  |
-| G13 | semantic | PASS | 242.9 | 363 | 35.8% |  |
-| G16 | mixed | PASS | 1667.9 | 581 | 0.0% |  |
-| G18 | mixed | PASS | 485.2 | 489 | 13.5% |  |
-| G20 | mixed | PASS | 1885.4 | 831 | 0.0% |  |
-| G06 | long_term | PASS | 1373.3 | 1944 | 0.0% |  |
-| G07 | long_term | PASS | 1345.4 | 1946 | 0.0% |  |
-| G17 | mixed | PASS | 1719.1 | 581 | 8.1% |  |
+| G01 | short_term | PASS | 0.4 | 227 | 0.0% |  |
+| G02 | short_term | PASS | 0.1 | 133 | 0.0% |  |
+| G08 | long_term | PASS | 1299.8 | 700 | 0.0% |  |
+| G09 | long_term | PASS | 1677.0 | 1214 | 0.0% |  |
+| G12 | semantic | PASS | 318.2 | 365 | 20.5% |  |
+| G14 | semantic | PASS | 277.7 | 217 | 43.9% |  |
+| G15 | semantic | PASS | 225.9 | 217 | 52.7% |  |
+| G19 | mixed | PASS | 1568.2 | 581 | 0.0% |  |
+| G03 | long_term | PASS | 1291.7 | 1232 | 0.0% |  |
+| G04 | long_term | PASS | 1549.8 | 1351 | 0.0% |  |
+| G05 | long_term | PASS | 1571.6 | 1490 | 0.0% |  |
+| G10 | episodic | PASS | 237.0 | 445 | 0.0% |  |
+| G11 | episodic | PASS | 349.8 | 472 | 0.0% |  |
+| G13 | semantic | PASS | 302.5 | 363 | 35.8% |  |
+| G16 | mixed | PASS | 1652.5 | 581 | 0.0% |  |
+| G18 | mixed | PASS | 585.2 | 489 | 13.5% |  |
+| G20 | mixed | PASS | 2506.2 | 831 | 0.0% |  |
+| G06 | long_term | PASS | 1904.0 | 1877 | 0.0% |  |
+| G07 | long_term | PASS | 1895.2 | 2106 | 0.0% |  |
+| G17 | mixed | PASS | 2302.7 | 581 | 8.1% |  |
 
 ## Evidence excerpts
 
@@ -64,7 +64,7 @@
 
 ### G19 - mixed
 
-`<LONG_TERM> <USER_SUMMARY> Lan's project is LOTUS-88. They prioritize Java and Spring Boot for backend development and do not use Python. </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-01 11:00:00     Source: message     Content: [user] {   "user_id": "lan-lab17",   "first_name": "Lan",   "last_name": "Tran",   "user_alias": "Lan Tran" }: Toi la Lan. Du an cua toi la LOTUS-88. Toi uu tien Java va Spring Boot, va khong dung Python trong vi du backend.   - Created At: 2026-08-01 11:00:20     Source: message     Content: Lab Assistant (assistant): Da hieu: LOTUS-88, Java + Spring Boot cho backend examples. </EPISODE`
+`<LONG_TERM> <USER_SUMMARY> Lan's project is LOTUS-88. They prioritize Java and Spring Boot for backend development and do not use Python. </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-17 05:53:32     Source: message     Content: [user] {   "user_id": "lan-lab17",   "first_name": "Lan",   "last_name": "Tran",   "user_alias": "Evaluation User" }: Lan uu tien stack backend nao cho LOTUS-88?   - Created At: 2026-08-01 11:00:20     Source: message     Content: Lab Assistant (assistant): Da hieu: LOTUS-88, Java + Spring Boot cho backend examples.   - Created At: 2026-08-01 11:00:00     Source: message     Content: [us`
 
 ### G03 - long_term
 
@@ -84,7 +84,7 @@
 
 ### G11 - episodic
 
-`EPISODE: Toi dang hoc async/await va hay nham coroutine voi Task. Neu sau nay gap chu de nay, hay giai thich bang timeline. metadata= EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20. metadata= EPISODE: Minh dang lam kiem ke lai mo hinh cac du an backend de bao cao, ma minh rat so cai vu bi gan nham du an cua nguoi khac vao ho so cua minh, chuyen do tung xay ra roi nen lan nay minh can cham. Ban liet ke gium minh chinh xac nhung du an backend ma dich than minh dang so huu thoi nhe, tuyet doi dung suy dien hay them vao bat ky du an nao cua ban be, dong nghiep hay ai khac `
+`EPISODE: Cap nhat moi: voi du an cong ty BLUEBIRD-42, backend bat buoc dung TypeScript voi NestJS; khong dung Python cho backend du an nay. Preference Python van dung cho demo ca nhan ORCHID-27. metadata= EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20. metadata= EPISODE: Minh dang lam kiem ke lai mo hinh cac du an backend de bao cao, ma minh rat so cai vu bi gan nham du an cua nguoi khac vao ho so cua minh, chuyen do tung xay ra roi nen lan nay minh can cham. Ban liet ke gium minh chinh xac nhung du an backend ma dich than minh dang so huu thoi nhe, tuyet doi dung suy `
 
 ### G13 - semantic
 
@@ -96,7 +96,7 @@
 
 ### G18 - mixed
 
-`<EPISODIC> EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-20. metadata= EPISODE: Minh dang lam kiem ke lai mo hinh cac du an backend de bao cao, ma minh rat so cai vu bi gan nham du an cua nguoi khac vao ho so cua minh, chuyen do tung xay ra roi nen lan nay minh can cham. Ban liet ke gium minh chinh xac nhung du an backend ma dich than minh dang so huu thoi nhe, tuyet doi dung suy dien hay them vao bat ky du an nao cua ban be, dong nghiep hay ai khac ma minh khong so huu. Neu ban khong chac cai nao la cua minh thi thoi bo qua, con hon la doan lam. metadata= EPISODE: Minh `
+`<EPISODIC> EPISODE: Minh dang chuan bi tu on lai phan async cua Python vi tuan sau co bai kiem tra nho, ma minh thi hoc kieu de vao dau lai de troi ra lam neu chi doc chu suong. Neu lat nua ban phai giai thich cho minh nhung khai niem hoi truu tuong nhu coroutine roi Task hoat dong ra sao, chay tuan tu hay song song the nao, thi ban nen trinh bay theo hinh thuc nao de hop voi cach minh tiep thu nhat? Minh khong hoi ve chuyen chon stack hay thu vien gi dau, minh chi hoi ve cach minh thich duoc day va minh hoa thoi. metadata= EPISODE: Cach hieu qua la reuse aiohttp ClientSession va dat concurrency=20. Reflection: loi chinh la connection churn, khong phai timeout threshold. Ma su co ASYNC-FIX-2`
 
 ### G20 - mixed
 

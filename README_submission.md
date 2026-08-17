@@ -1,6 +1,6 @@
 # Lab 17 — Submission Notes
 
-Practice: **11/11 PASS**, hit rate 1.00, avg latency 814.6 ms, token reduction 14.2% (`reports/benchmark.json`). Golden: **20/20**, `perfect: true` (`reports/golden_benchmark.json`).
+Practice: **11/11 PASS**, hit rate 1.00, avg latency 692.9 ms, token reduction 19.1% (`reports/benchmark.json`). Golden: **20/20**, `perfect: true` (`reports/golden_benchmark.json`).
 
 ## A. Reflection
 
@@ -13,9 +13,9 @@ Practice: **11/11 PASS**, hit rate 1.00, avg latency 814.6 ms, token reduction 1
 ## B. Benchmark analysis
 
 1. **Lowest hit rate:** none — all five layers tie at 100% (short_term 2/2, long_term 4/4, episodic 2/2, semantic 2/2, mixed 1/1).
-2. **Most tokens retrieved:** E02, long_term, 2336 tokens (E03 2236, E08 2164) — long-term returns a Context Block *plus* 20 raw episodes, unlike the compact graph-search layers (~140).
-3. **E07 (mixed)** combines long-term personal memory (`Python`) with shared semantic knowledge (`Idempotency-Key`). ContextBudgetManager must preserve both: long-term was trimmed 2312→324 tokens, yet `Python` survived because trimming keeps the head.
-4. **Token reduction:** 14.2% with memory vs 81.8% without — but no-memory scores only 2/11 (18.2%). It looks efficient only because it retrieves nothing, so reduction matters only with hit rate.
+2. **Most tokens retrieved:** E02, long_term, 1153 tokens (E03 1054, E08 991) — long-term returns a Context Block *plus* 20 raw episodes, unlike the compact graph-search layers (~150).
+3. **E07 (mixed)** combines long-term personal memory (`Python`) with shared semantic knowledge (`Idempotency-Key`). ContextBudgetManager must preserve both: long-term was trimmed 1129→324 tokens, yet `Python` survived because trimming keeps the head.
+4. **Token reduction:** 19.1% with memory vs 81.8% without — but no-memory scores only 2/11 (18.2%). It looks efficient only because it retrieves nothing, so reduction matters only with hit rate.
 
 ## C. Notes
 
