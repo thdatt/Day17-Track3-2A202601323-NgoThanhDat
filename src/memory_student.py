@@ -4,6 +4,7 @@ from typing import Any
 
 from .config import settings
 from .context_budget import ContextBudgetManager
+from .utils import cap_query, join_nonempty
 from .zep_common import prime_eval_thread, render_graph_search
 
 
@@ -19,34 +20,51 @@ class StudentMemory:
     # `cap_query(query)` (see src/utils.py) before passing it to graph.search.
 
     def retrieve_long_term(self, user_id: str, thread_id: str, query: str) -> str:
-        # LAB TODO 1/4
-        # 1) prime_eval_thread(...) has already been provided as scaffolding.
-        # 2) call thread.get_user_context(thread_id=...)
-        # 3) return the .context string.
-        # Bonus: append graph.search(scope="edges", limit>=20) facts with
-        #        validity ranges (a low limit can miss deadline/open-loop facts).
+        # Recreate the evaluation thread under this user and seed it with the
+        # query, so Zep assembles the Context Block from that user's graph only.
         prime_eval_thread(self.client, user_id, thread_id, query)
-        raise NotImplementedError("LAB TODO: implement long-term retrieval with Zep Context Block")
+        context = self.client.thread.get_user_context(thread_id=thread_id)
+
+        # The Context Block holds *extracted* facts, which can summarise away a
+        # literal id (an open-loop marker survives only in the raw wording).
+        # Raw user episodes keep the original text, so append them as supporting
+        # evidence. A low limit misses the deadline/open-loop episode, hence 20.
+        # Still user-scoped, so isolation is unaffected.
+        episodes = self.client.graph.search(
+            user_id=user_id,
+            query=cap_query(query),
+            scope="episodes",
+            limit=20,
+        )
+        return join_nonempty([context.context or "", render_graph_search(episodes)])
 
     def retrieve_episodic(self, user_id: str, query: str) -> str:
-        # LAB TODO 2/4
-        # Use client.graph.search(user_id=..., query=cap_query(query),
-        #     scope="episodes", limit=...) then render_graph_search(...).
-        # Tip: verbose session episodes can crowd out concise, marker-bearing
-        # reflections under the tight episodic budget — render_graph_search
-        # accepts an `episode_char_cap` to keep more distinct episodes.
-        raise NotImplementedError("LAB TODO: implement episodic search")
+        # Search this user's own graph for past experiences/trajectories.
+        # user_id keeps the search scoped to one user; the shared semantic
+        # graph is never consulted here.
+        results = self.client.graph.search(
+            user_id=user_id,
+            query=cap_query(query),
+            scope="episodes",
+            limit=5,
+        )
+        return render_graph_search(results)
 
     def retrieve_semantic(self, graph_id: str, query: str) -> str:
-        # LAB TODO 3/4
-        # Search the standalone graph (graph_id, NOT user_id).
-        # Recommended: scope="episodes" — it returns raw document text that keeps
-        # literal markers (e.g. PAYMENT-RULE-3). The "auto" scope returns
-        # extracted facts that DROP those literal codes, so avoid it here.
-        # Fallback: scope="nodes".
-        raise NotImplementedError("LAB TODO: implement semantic graph search")
+        # Search the shared standalone domain graph, never a user graph.
+        # scope="episodes" returns raw document text, which keeps literal
+        # source markers; content is left uncapped because those markers sit
+        # at the end of each knowledge document.
+        results = self.client.graph.search(
+            graph_id=graph_id,
+            query=cap_query(query),
+            scope="episodes",
+            limit=8,
+        )
+        return render_graph_search(results)
 
     def assemble_context(self, layers: dict[str, str]) -> tuple[str, dict[str, dict[str, int]]]:
-        # LAB TODO 4/4
-        # Use ContextBudgetManager to enforce 10/4/3/3 budget and priority order.
-        raise NotImplementedError("LAB TODO: assemble/trim memory context")
+        # ContextBudgetManager already applies the 10/4/3/3 budget, the
+        # short_term -> long_term -> episodic -> semantic priority order and
+        # head-preserving trimming, so delegate instead of duplicating it.
+        return self.budget.assemble(layers)
